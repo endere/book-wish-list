@@ -13,4 +13,11 @@ class User(db.Model):
     email = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(PasswordType(schemes=['pbkdf2_sha512']), unique=False, nullable=False)
     books = db.relationship('Book', secondary=wishlist_table)
-    
+
+    @property
+    def json(self):
+        return {
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email
+        }
