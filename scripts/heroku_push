@@ -1,0 +1,2 @@
+heroku container:push web --app book-wish-list
+heroku container:release --app book-wish-list web

@@ -1,0 +1,5 @@
+#!/bin/bash
+docker build -t endere/book_wish_list:latest .
+source ./scripts/secrets
+docker-compose down
+docker-compose up book_wish_list 

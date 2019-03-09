@@ -1,0 +1,1 @@
+docker build -t endere/book_wish_list:latest .
