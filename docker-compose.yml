@@ -2,7 +2,7 @@ version: "3"
 services:
   book_wish_list:
     container_name: book_wish_list
-    build: .
+    image: endere/book_wish_list:latest
     ports: 
       - "5678:5678"
     environment:
@@ -10,5 +10,7 @@ services:
       - DATABASE_DB=$DATABASE_DB
       - DATABASE_USER=$DATABASE_USER
       - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - PORT=$PORT
+      - PYTHONUNBUFFERED=TRUE
     volumes:
       - ./:/app

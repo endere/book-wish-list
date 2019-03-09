@@ -1,12 +1,13 @@
 import json
 from flask import abort, Blueprint, render_template, request
 from flask_restplus import Namespace, Resource, fields
+from tables.user import User
+users = Namespace('users', __name__)
 
-books = Namespace('books', __name__)
 
-
-@books.route('/hello')
+@users.route('/hello')
 class HelloWorld(Resource):
     def get(self):
-        return {'hello': 'books view'}
+        print(User)
+        return {'hello': 'users view'}
 

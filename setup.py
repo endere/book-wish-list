@@ -13,7 +13,9 @@ setup(
         'sqlalchemy',
         'docker',
         'flask-login',
+        'flask-sqlalchemy',
         'flask-restplus',
+        'psycopg2',
         'docker-compose'
     ]
 )

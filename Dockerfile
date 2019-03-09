@@ -1,17 +1,15 @@
-FROM python:3-alpine
+FROM python:3
 
-RUN apk update \
-  && apk upgrade \
-  && apk add postgresql-dev \
-  && pip install -U pip \
-  && pip install gunicorn
-
-RUN pip install flask \
+RUN pip install -U pip \
+  && pip install flask \
+  && pip install gunicorn \
   && pip install docker \
-  && pip install flask_login \
+  && pip install flask-login \
   && pip install flask-restplus \
+  && pip install flask-sqlalchemy \
   && pip install docker-compose \
-  && pip install sqlalchemy 
+  && pip install sqlalchemy \
+  && pip install psycopg2
 
 
 
@@ -26,4 +24,4 @@ ENV FLASK_APP=book_wish_list.book_wish_list
 EXPOSE ${PORT}
 WORKDIR /app/book_wish_list
 
-CMD gunicorn -c /app/gunicorn.conf book_wish_list.app:app --log-level=debug --reload --bind 0.0.0.0:${PORT};
+CMD gunicorn -c /app/gunicorn.conf book_wish_list.run:app --log-level=debug --reload --bind 0.0.0.0:${PORT};
