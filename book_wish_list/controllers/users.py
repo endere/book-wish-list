@@ -1,25 +1,10 @@
-from flask import request
+from flask import request, redirect, url_for
 from flask_restplus import Namespace, Resource
 from tables.user import User, db
+from tables.book import Book
 from sqlalchemy.exc import IntegrityError
-from flask_restplus import reqparse
-create_parser = reqparse.RequestParser()
-create_parser.add_argument('first_name', type=str)
-create_parser.add_argument('last_name', type=str)
-create_parser.add_argument('email', type=str)
-create_parser.add_argument('password', type=str)
+from controllers.parsers import (create_parser, update_parser, delete_parser, wishlist_parser)
 
-update_parser = reqparse.RequestParser()
-update_parser.add_argument('new_first_name', type=str)
-update_parser.add_argument('new_last_name', type=str)
-update_parser.add_argument('new_password', type=str)
-update_parser.add_argument('new_email', type=str)
-update_parser.add_argument('password', type=str)
-
-
-
-delete_parser = reqparse.RequestParser()
-delete_parser.add_argument('password', type=str)
 
 users = Namespace('users', __name__)
 def error_wrapper(f):
@@ -36,51 +21,73 @@ def error_wrapper(f):
     return _wrapper
 
 
-
-
-@users.route('/<email>')
-class UserGet(Resource):
-
-    @error_wrapper
-    def get(self, email):
-        user = User.query.filter_by(email=email).first()
-        return user.json
-
-
-    @users.expect(delete_parser)
-    @error_wrapper
-    def delete(self, email):
-        user = User.query.filter_by(email=email).first()
-        if email == user.email and request.values['password'] == user.password:
-            db.session.delete(user)
-            db.session.commit()
-            return {"Status": "delete success"}
-        else:
-            return {"Status": "Failed authentication. Password incorrect."}
-
-    @users.expect(update_parser)
-    @error_wrapper
-    def put(self, email):
-        user = User.query.filter_by(email=email).first()
-        if email == user.email and request.values['password'] == user.password:
-            user.first_name = request.values['new_first_name']
-            user.last_name = request.values['new_last_name']
-            user.password = request.values['new_password']
-            user.email = request.values['new_email']
-            db.session.commit()
-            return user.json
-        else:
-            return {"Status": "Failed authentication. Password incorrect."}
-
-
-
 @users.route('/')
-class UserResource(Resource):
+class UserPost(Resource):
     @users.expect(create_parser)
     @error_wrapper
     def post(self):
         user = User(first_name=request.values['first_name'], last_name=request.values['last_name'], email=request.values['email'], password=request.values['password'])
         db.session.add(user)
         db.session.commit()
-        return user.json
+        return {"status": "Create success", "user": user.json}
+
+@users.route('/<id>')
+class UserHandle(Resource):
+
+    @error_wrapper
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        return {"status": "Get success", "user": user.json}
+
+
+    @users.expect(delete_parser)
+    @error_wrapper
+    def delete(self, id):
+        user = User.query.filter_by(id=id).first()
+        if int(id) == user.id and request.values['password'] == user.password:
+            db.session.delete(user)
+            db.session.commit()
+            return {"status": "Delete success"}
+        else:
+            return {"status": "Failed authentication. Password incorrect."}
+
+    @users.expect(update_parser)
+    @error_wrapper
+    def put(self, id):
+        user = User.query.filter_by(id=id).first()
+        if int(id) == user.id and request.values['password'] == user.password:
+            user.first_name = request.values['new_first_name']
+            user.last_name = request.values['new_last_name']
+            user.password = request.values['new_password']
+            user.email = request.values['new_email']
+            db.session.commit()
+            return {"status": "Update success", "user": user.json}
+        else:
+            return {"status": "Failed authentication. Password incorrect."}
+
+
+
+@users.route('/wishlist/<id>')
+class WishlistHandle(Resource):
+
+    @error_wrapper
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        return user.wishlist
+
+    @users.expect(wishlist_parser)
+    @error_wrapper
+    def put(self, id):
+        user = User.query.filter_by(id=id).first()
+        book = Book.query.filter_by(isbn=request.values['isbn']).first()
+        if not book:
+            book = Book(title=request.values['title'], author=request.values['author'], isbn=request.values['isbn'], date_of_publication=request.values['date_of_publication'])
+        if int(id) == user.id and request.values['password'] == user.password:
+            user.wishlist.append(book)
+            db.session.add(book)
+            db.session.commit()
+            return {"status": "Book added to wishlist", "user": user.json}
+        else:
+            return {"status": "Failed authentication. Password incorrect."}
+
 
