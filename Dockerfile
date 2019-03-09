@@ -4,11 +4,12 @@ RUN pip install -U pip \
   && pip install flask \
   && pip install gunicorn \
   && pip install docker \
-  && pip install flask-login \
   && pip install flask-restplus \
   && pip install flask-sqlalchemy \
   && pip install docker-compose \
   && pip install sqlalchemy \
+  && pip install sqlalchemy_utils \
+  && pip install passlib \
   && pip install psycopg2
 
 

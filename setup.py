@@ -12,10 +12,11 @@ setup(
         'flask',
         'sqlalchemy',
         'docker',
-        'flask-login',
         'flask-sqlalchemy',
         'flask-restplus',
         'psycopg2',
+        'passlib',
+        'sqlalchemy_utils',
         'docker-compose'
     ]
 )
