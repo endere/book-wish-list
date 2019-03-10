@@ -10,10 +10,8 @@ import os
 import tempfile
 
 import pytest
-# print(os.path.dirname(os.path.abspath('book_wish_list')) # This is your Project Root
-# )
-ROOT_DIR = os.path.dirname(os.path.abspath('book_wish_list')) # This is your Project Root
 
+ROOT_DIR = os.path.dirname(os.path.abspath('book_wish_list'))
 sys.path.insert(0, ROOT_DIR)
 
 from book_wish_list import app, db

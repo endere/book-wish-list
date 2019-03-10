@@ -18,4 +18,4 @@ RUN pip install -U pip \
 COPY . /app
 WORKDIR /app
 
-ENTRYPOINT ["pytest", "-p", "no:cacheprovider", "--cov"]
+ENTRYPOINT ["pytest", "--cov", "--cov-config", "tests/.coveragerc"]
