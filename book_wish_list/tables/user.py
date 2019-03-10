@@ -1,11 +1,19 @@
+"""Sqlalchemy user model."""
+
 from book_wish_list import db
 from tables.wishlist import wishlist_table
 from sqlalchemy_utils.types.password import PasswordType
-from sqlalchemy.exc import IntegrityError
-
 
 
 class User(db.Model):
+    """
+    User model using sqlalchemy.
+
+    id is the primary key.
+    Email must be unique.
+    Password is automatically encoded in the database.
+    """
+
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(128), unique=False, nullable=False)
@@ -16,6 +24,7 @@ class User(db.Model):
 
     @property
     def json(self):
+        """Property function that returns a json representation of the object."""
         return {
             'type': "user",
             'id': self.id,
@@ -27,5 +36,5 @@ class User(db.Model):
 
     @property
     def wishlist_json(self):
+        """Property function that returns a list of all book json in User's wishlsit."""
         return [book.json for book in self.wishlist]
-

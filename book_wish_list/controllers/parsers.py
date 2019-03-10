@@ -1,5 +1,5 @@
+"""Parsers for flask-restplus api requests. Stored here to keep code clean."""
 from flask_restplus import reqparse, fields
-
 
 create_parser = reqparse.RequestParser()
 create_parser.add_argument('first_name', type=str)
@@ -16,7 +16,6 @@ update_parser.add_argument('password', type=str)
 
 delete_parser = reqparse.RequestParser()
 delete_parser.add_argument('password', type=str)
-
 
 book_create_parser = reqparse.RequestParser()
 book_create_parser.add_argument('title', type=str)

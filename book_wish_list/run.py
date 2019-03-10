@@ -1,3 +1,4 @@
+"""Entrypoint script for the app."""
 import os
 from . import app
 

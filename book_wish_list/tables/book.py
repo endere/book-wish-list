@@ -1,7 +1,16 @@
+"""Sqlalchemy user model."""
+
 from book_wish_list import db
 
 
 class Book(db.Model):
+    """
+    User model using sqlalchemy.
+
+    id is the primary key.
+    isbn must be unique.
+    """
+
     __tablename__ = 'books'
     id = db.Column(db.Integer, unique=False, nullable=False, primary_key=True)
     title = db.Column(db.String(128), unique=False, nullable=False)
@@ -11,6 +20,7 @@ class Book(db.Model):
 
     @property
     def json(self):
+        """Property function that returns a json representation of the object."""
         return {
             'type': "book",
             'id': self.id,

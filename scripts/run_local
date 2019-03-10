@@ -1,3 +1,0 @@
-#!/bin/bash
-source ./script/secrets
-gunicorn -c gunicorn.conf book_wish_list.run:app --log-level=debug --reload;
