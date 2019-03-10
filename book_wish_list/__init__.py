@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = str(uuid.uuid4())
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
-api = Api(app, doc='/swagger/')
+api = Api(app, doc='/swagger/', title='book_wish_list', description='A wishlist keeping microserver by Erik Enderlein.')
 db = SQLAlchemy(app)
 
 for module_name in ['book', 'wishlist', 'user']:

@@ -43,7 +43,7 @@ Both of these commands involve the use of environmental secrets, which are norma
 
 #gunicorn: This is my one of my favorite WSGI servers, as it is easy to configure and use, works great with flask, and scales much better and more smoothly than flask's built in run server. It is a natural choice for deploying small flask web-apps.
 
-#heroku: I deployed with heroku because it is an easy to use, free service that let me spend less time on the devops side of the work and more on actually coding my project. While I am more familiar with AWS and kubernetes, AWS will really quickly transition to charging money if you are not careful (not ideal for a little demo project) and kubernetes seemed way too overkill for what the scope of this project required.
+#heroku: I deployed with heroku because it is an easy to use, free service that let me spend less time on the devops side of the work and more on actually coding my project. While I am familiar with AWS and kubernetes, AWS will really quickly transition to charging money if you are not careful (not ideal for a little demo project) and kubernetes seemed way too overkill for what the scope of this project required.
 
 #docker: I don't like taking any chances with my code and deployments, and docker is great for letting me circumvent all risks of the oh so common "but it worked on my computer!" issue. The localhost run script, test script, and heroku deployment all make use of docker, so that the code runs the same way, no matter where it is, every time.
 
