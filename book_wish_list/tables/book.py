@@ -3,7 +3,7 @@ from book_wish_list import db
 
 class Book(db.Model):
     __tablename__ = 'books'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, unique=False, nullable=False, primary_key=True)
     title = db.Column(db.String(128), unique=False, nullable=False)
     author = db.Column(db.String(128), unique=False, nullable=False)
     isbn = db.Column(db.String(128), unique=True, nullable=False)
@@ -12,6 +12,7 @@ class Book(db.Model):
     @property
     def json(self):
         return {
+            'type': "book",
             'id': self.id,
             'title': self.title,
             'author': self.author,
