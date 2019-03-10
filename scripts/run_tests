@@ -1,0 +1,5 @@
+#!/bin/bash
+source ./scripts/secrets-tests
+docker-compose down
+docker build -t endere/book_wish_list_tests:latest tests/.
+docker-compose up book_wish_list_tests

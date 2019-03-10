@@ -14,3 +14,15 @@ services:
       - PYTHONUNBUFFERED=TRUE
     volumes:
       - ./:/app
+  book_wish_list_tests:
+    container_name: book_wish_list_tests
+    image: endere/book_wish_list_tests:latest
+    environment:
+      - DATABASE_URL=$DATABASE_URL
+      - DATABASE_DB=$DATABASE_DB
+      - DATABASE_USER=$DATABASE_USER
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - PORT=$PORT
+      - PYTHONUNBUFFERED=TRUE
+    volumes:
+      - ./:/app

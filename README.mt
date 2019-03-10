@@ -1,0 +1,1 @@
+py.test --cov --cov-config tests/.coveragerc

@@ -117,6 +117,7 @@ secrets.yaml
 secrets-staging.yaml
 secrets
 secrets-staging
+secrets-tests
 
 kubernetes/staging/regsecret.yaml
 kubernetes/prod/regsecret.yaml
@@ -124,4 +125,4 @@ kubernetes/staging/secrets-staging.yaml
 kubernetes/prod/secrets.yaml
 
 script/secrets
-script/secrets-staging
+script/secrets-tests

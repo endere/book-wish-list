@@ -18,5 +18,12 @@ setup(
         'passlib',
         'sqlalchemy_utils',
         'docker-compose'
+    ],
+    test_require=[
+        'pytest',
+        'pytest-cov',
+        'pytest-flask',
+        'mock',
+        'pyquery'
     ]
 )

@@ -1,6 +1,6 @@
 import os
 import uuid
-
+import sys
 from flask import Flask
 from flask_restplus import Api
 from flask_sqlalchemy import SQLAlchemy
@@ -9,6 +9,8 @@ from importlib import import_module
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+ROOT_DIR = os.path.dirname(os.path.abspath('book_wish_list'))
+sys.path.insert(0, f"{ROOT_DIR}/book_wish_list")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = str(uuid.uuid4())
@@ -24,9 +26,5 @@ for module_name in ['book', 'wishlist', 'user']:
 from controllers.books import books
 from controllers.users import users
 api.add_namespace(books)
-
 api.add_namespace(users)
-
-
 db.create_all()
-

@@ -1,0 +1,10 @@
+[run]
+source = .
+omit =
+    tests/*
+    setup.py
+    *__init__.py
+    book_wish_list/run.py
+
+[report]
+show_missing = True
