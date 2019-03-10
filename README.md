@@ -1,5 +1,5 @@
-book_wish_list
- By Erik Enderlein
+#book_wish_list
+##By Erik Enderlein
 ---
 ### Description
 
@@ -34,8 +34,8 @@ Both of these commands involve the use of environmental secrets, which are norma
 
 
 
-### design and technology choices
-## Technology choices:
+## Design and Technology choices
+### Technology choices:
 
 #Flask: I decided to use flask (with flask restplus) as the core framework for this project. This is in large part because the scope of the project is small, and thus, a lightweight framework that is easy to spin up and develop is most ideal. I also chose flask because I am extremely confident and familiar with it, which me to focus more on the technology of the project that I was not as familiar with (sqlalchemy). 
 
@@ -52,7 +52,7 @@ Both of these commands involve the use of environmental secrets, which are norma
 #pytest: A staple testing framework for python. Works great with flask. No reason not to use it!
 
 
-## design choices:
+### Design choices:
 I tried to keep my code as modular as humanly possible, in separating out all of the systems into their own separate places, which kept the code clean, document size small, and confusion low.
 
 Sqlalchemy is conducive to creating a separate model page for each of its models, which was a clear choice for Users and Books. I initially created a 'models' folder to house them, but that be came not 'entirely' true when I also created the wishlist table. I thus renamed the folder to 'tables' to better represent that each folder within represented a different one of the three tables in the database.
