@@ -22,8 +22,5 @@ setup(
     test_require=[
         'pytest',
         'pytest-cov',
-        'pytest-flask',
-        'mock',
-        'pyquery'
     ]
 )

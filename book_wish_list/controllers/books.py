@@ -28,6 +28,7 @@ class BookHandleWithoutId(Resource):
         db.session.commit()
         return BookHandleWithId().get(book.id)
 
+    @error_wrapper
     def get(self):
         """Return a list of all books."""
         return api_response(Book.query.all(), "success")

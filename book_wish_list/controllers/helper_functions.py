@@ -22,16 +22,17 @@ def api_response(data, status, code=200):
 
 
 def error_wrapper(f):
-    """Decorator that handles errors in code and turns them into appropriate responses."""
-    def _wrapper(*args, **kwargs):
-        """
-        Call function and return response.
+    """Decorator that handles errors in code and turns them into appropriate responses.
 
-        An AttributeError means that a resource was not found.
-        An IntegrityError means that sqlalchemy tried to put a value in the database whose unique key already exists (email for users and isbn for books.)
-        A BadRequestKeyError means that either not all of the required request parameters were present, or one or more of them were ill-formatted.
-        A ValueError means that a request was made to remove an existing book from an existing wishlist, but that book is not IN that wishlist.
-        """
+    An AttributeError means that a resource was not found.
+    An IntegrityError means that sqlalchemy tried to put a value in the database whose unique key already exists (email for users and isbn for books.)
+    A BadRequestKeyError means that either not all of the required request parameters were present, or one or more of them were ill-formatted.
+    A ValueError means that a request was made to remove an existing book from an existing wishlist, but that book is not IN that wishlist.
+
+    The _wrapper function intentionally does not have a docstring, as, due to a limitation of flask-restplus and how it interacts with decorators,
+    that docstring would populate on the swagger front end, rather than the docstrings for the endpoints.
+    """
+    def _wrapper(*args, **kwargs):
         try:
             res = f(*args, **kwargs)
         except AttributeError:
