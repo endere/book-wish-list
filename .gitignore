@@ -112,5 +112,3 @@ client.py
 modules/umcli
 testresults.txt
 
-# kubernetes secrets file
-
