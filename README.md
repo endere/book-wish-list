@@ -24,7 +24,7 @@ run this command:
 The swagger docs will be available at this url:
 http://127.0.0.1:5678/swagger/
 
-### run tests
+### Run tests
 
 run this command:
 ./scripts/run_tests
