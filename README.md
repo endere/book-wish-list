@@ -37,19 +37,19 @@ Both of these commands involve the use of environmental secrets, which are norma
 ## Design and Technology choices
 ### Technology choices:
 
-#Flask: I decided to use flask (with flask restplus) as the core framework for this project. This is in large part because the scope of the project is small, and thus, a lightweight framework that is easy to spin up and develop is most ideal. I also chose flask because I am extremely confident and familiar with it, which me to focus more on the technology of the project that I was not as familiar with (sqlalchemy). 
+* Flask: I decided to use flask (with flask restplus) as the core framework for this project. This is in large part because the scope of the project is small, and thus, a lightweight framework that is easy to spin up and develop is most ideal. I also chose flask because I am extremely confident and familiar with it, which me to focus more on the technology of the project that I was not as familiar with (sqlalchemy). 
 
-#sqlalchemy: At my current workplace, we have an internal system for handling sql queries in python, which I have grown accustomed to. I used sqlalchemy a little bit while in school, but do not have a strong recollection of how it worked from back then. I saw this project as an excellent opportunity to experiment with an unfamiliar technology for managing database models without writing any of my own sql. Aside from my own personal growth, sqlalchemy was a strong choice for this, as the scope of the project called for two tables with a many-to-many relationship, something that falls very easily into sqlalchemy's toolkit. The application of the tool to the project ended up being very simple and intuitive.
+* sqlalchemy: At my current workplace, we have an internal system for handling sql queries in python, which I have grown accustomed to. I used sqlalchemy a little bit while in school, but do not have a strong recollection of how it worked from back then. I saw this project as an excellent opportunity to experiment with an unfamiliar technology for managing database models without writing any of my own sql. Aside from my own personal growth, sqlalchemy was a strong choice for this, as the scope of the project called for two tables with a many-to-many relationship, something that falls very easily into sqlalchemy's toolkit. The application of the tool to the project ended up being very simple and intuitive.
 
-#gunicorn: This is my one of my favorite WSGI servers, as it is easy to configure and use, works great with flask, and scales much better and more smoothly than flask's built in run server. It is a natural choice for deploying small flask web-apps.
+* gunicorn: This is my one of my favorite WSGI servers, as it is easy to configure and use, works great with flask, and scales much better and more smoothly than flask's built in run server. It is a natural choice for deploying small flask web-apps.
 
-#heroku: I deployed with heroku because it is an easy to use, free service that let me spend less time on the devops side of the work and more on actually coding my project. While I am familiar with AWS and kubernetes, AWS will really quickly transition to charging money if you are not careful (not ideal for a little demo project) and kubernetes seemed way too overkill for what the scope of this project required.
+* heroku: I deployed with heroku because it is an easy to use, free service that let me spend less time on the devops side of the work and more on actually coding my project. While I am familiar with AWS and kubernetes, AWS will really quickly transition to charging money if you are not careful (not ideal for a little demo project) and kubernetes seemed way too overkill for what the scope of this project required.
 
-#docker: I don't like taking any chances with my code and deployments, and docker is great for letting me circumvent all risks of the oh so common "but it worked on my computer!" issue. The localhost run script, test script, and heroku deployment all make use of docker, so that the code runs the same way, no matter where it is, every time.
+* docker: I don't like taking any chances with my code and deployments, and docker is great for letting me circumvent all risks of the oh so common "but it worked on my computer!" issue. The localhost run script, test script, and heroku deployment all make use of docker, so that the code runs the same way, no matter where it is, every time.
 
-#postgres: My go-to database system. It has an easy to use extension in heroku, and I'm already very familiar with its specific sql syntax, which made debugging and understanding database happenings easy.
+* postgres: My go-to database system. It has an easy to use extension in heroku, and I'm already very familiar with its specific sql syntax, which made debugging and understanding database happenings easy.
 
-#pytest: A staple testing framework for python. Works great with flask. No reason not to use it!
+* pytest: A staple testing framework for python. Works great with flask. No reason not to use it!
 
 
 ### Design choices:
